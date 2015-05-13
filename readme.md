@@ -2,14 +2,11 @@
 ##installation notes
 
 
-
-`` 
    sudo  npm install gulp -g 
    npm install
    bower install
    gulp
-   gulp server 
+   gulp serve 
    
-   ``
- Browse http://localhost:9000
+  Browse http://localhost:9000
 

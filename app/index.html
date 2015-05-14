@@ -1,85 +1,85 @@
 <!doctype html>
 <html class="no-js">
-    <head>
-        <meta charset="utf-8">
-        <title>Amazon Payment Demo</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<head>
+    <meta charset="utf-8">
+    <title>Amazon Payment Demo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
 
-        <!-- build:css styles/vendor.css -->
-        <!-- bower:css -->
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-        <!-- endbower -->
-        <!-- endbuild -->
-        <!-- build:css styles/main.css -->
-        <link rel="stylesheet" href="styles/main.css">
-        <!-- endbuild -->
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
 
-        <!-- build:js scripts/vendor/modernizr.js -->
-        <script src="bower_components/modernizr/modernizr.js"></script>
-        <script src="bower_components/jquery/dist/jquery.js"></script>
-        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-        <!-- endbuild -->
-    </head>
-    <body>
-      <div class="container">
-            <div class="header">
-                <ul class="nav nav-pills pull-right">
-                    <li class="active"><a href="#">Home</a></li>
-                </ul>
-                <h3 class="text-muted">Amazon Payment Demo</h3>
-
-                 <div id="AmazonPayButton"></div>
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <script src="bower_components/jquery/src/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script type='text/javascript'>
+        window.onAmazonLoginReady = function() {
+            amazon.Login.setClientId('amzn1.application-oa2-client.ef5d46cbfd5249468432cda089d4fabd');
+        };
+    </script>
+    <script src="https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js?sellerId=A2ISLC14FJ2O0F"></script>
 
 
-            <div class="footer">
+    <!-- endbuild -->
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <ul class="nav nav-pills pull-right">
+            <li class="active"><a href="#">Home</a></li>
+        </ul>
+        <h3 class="text-muted">Amazon Payment Demo</h3>
 
-            </div>
+        <div id="AmazonPayButton"></div>
+
+
+        <div class="footer">
+
         </div>
+    </div>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-
-
-        <!-- build:js scripts/vendor.js -->
-        <!-- bower:js -->
-
-        <!-- endbower -->
-        <!-- endbuild -->
-
-        <!-- build:js scripts/plugins.js -->
-          <script src="https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js?sellerId=A2ISLC14FJ2O0F"></script>
-
-          <!-- endbuild -->
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 
 
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
 
-          <script>
-             document.addEventListener('DOMContentLoaded', function(){
-                  amazon.Login.setClientId('amzn1.application-oa2-client.ef5d46cbfd5249468432cda089d4fabd');
+    <!-- endbower -->
+    <!-- endbuild -->
 
-              });
-              window.onAmazonLoginReady  = function() {
-                  alert("Starting");
-                  alert("done");
-              };
+    <!-- build:js scripts/plugins.js -->
 
-              var authRequest;
+    <!-- endbuild -->
 
-              OffAmazonPayments.Button("AmazonPayButton", "AKIAIJWZOLOODZQZ665Q", {
-                  type:  "PwA",
-                  color: "Gold",
-                  size:  "medium",
-                  useAmazonAddressBook: false,
-                  authorization: function() {
-                      var loginOptions = {scope: 'payments:widget', popup:false};
-                      authRequest = amazon.Login.authorize(loginOptions, "http://localhost:9000/payment-success.html");
-                  },
-                  onError: function(error) {
-                      // Write your custom error handling
-                  }
-              });
-          </script>
+
+
+    <script>
+
+
+        var authRequest;
+
+        OffAmazonPayments.Button("AmazonPayButton", "A2ISLC14FJ2O0F", {
+            type:  "PwA",
+            color: "Gold",
+            size:  "medium",
+            useAmazonAddressBook: false,
+            authorization: function() {
+                var loginOptions = {scope: 'payments:widget', popup:false};
+                authRequest = amazon.Login.authorize(loginOptions, "http://localhost:9000/payment-success.html");
+            },
+            onError: function(error) {
+                // Write your custom error handling
+            }
+        });
+    </script>
 </body>
 </html>
